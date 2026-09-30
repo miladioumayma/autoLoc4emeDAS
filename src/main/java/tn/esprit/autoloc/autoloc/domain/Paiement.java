@@ -30,4 +30,7 @@ public class Paiement {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
     private ModePaiement modePaiement;
+    // * -> 1 avec Contrat
+    @ManyToOne
+    private Contrat contrat;
 }
