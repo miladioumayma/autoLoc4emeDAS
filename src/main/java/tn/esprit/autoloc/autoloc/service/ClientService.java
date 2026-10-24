@@ -3,14 +3,14 @@ package tn.esprit.autoloc.autoloc.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.autoloc.autoloc.domain.Client;
-import tn.esprit.autoloc.autoloc.repository.ClientRepository;
+import tn.esprit.autoloc.autoloc.repository.IClientRepository;
 
 import java.util.List;
 @Service
 @AllArgsConstructor
 public class ClientService implements IClientService{
 
-  ClientRepository repo;
+  IClientRepository repo;
     @Override
     public List<Client> retrieveAllClients() {
         return repo.findAll();

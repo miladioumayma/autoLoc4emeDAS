@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,10 +30,15 @@ public class Contrat {
     @Column(nullable = false)
     private boolean valide;
     // 1 -> 1 avec Reservation (Propriétaire de la clé étrangère)
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
     // Composition 1 -> * avec Paiement
-    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Paiement> paiements;
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<Paiement> paiements = new ArrayList<>();
 }

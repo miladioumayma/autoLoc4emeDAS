@@ -31,6 +31,6 @@ public class Paiement {
     @Column(nullable = false, length = 30)
     private ModePaiement modePaiement;
     // * -> 1 avec Contrat
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Contrat contrat;
 }

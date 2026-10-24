@@ -23,6 +23,6 @@ public class Equipement {
     @Column(nullable = false, length = 100)
     private String libelle;
     // * -> * avec Vehicule (mappedBy sur l'entité fille)
-    @ManyToMany(mappedBy = "equipements", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "equipements", fetch = FetchType.LAZY)
     private List<Vehicule> vehicules;
 }

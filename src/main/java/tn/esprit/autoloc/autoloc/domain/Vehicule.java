@@ -31,18 +31,24 @@ public class Vehicule {
     @Column(nullable = false, length = 20)
     private StatutVehicule statut;
     // * -> 1 avec Agence
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
 
     // 1 -> * avec Maintenance
-    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST,
+            fetch = FetchType.LAZY)
     private List<Maintenance> maintenances;
 
     // 1 -> * avec Reservation
-    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "vehicule", fetch = FetchType.LAZY)
     private List<Reservation> reservations;
 
     // * -> * avec Equipement (Propriétaire de l'association)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "id_vehicule"),
+            inverseJoinColumns = @JoinColumn(name = "id_equipement")
+    )
     private List<Equipement> equipements;
 }

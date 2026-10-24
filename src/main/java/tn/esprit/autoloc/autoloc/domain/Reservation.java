@@ -30,14 +30,14 @@ public class Reservation {
     @Column(nullable = false, length = 30)
     private StatutReservation statut;
     // * -> 1 avec Vehicule
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
 
     // * -> 1 avec Client
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
     // 1 -> 1 avec Contrat (mappedBy côté fille)
-    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Contrat contrat;
 }
