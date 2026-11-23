@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.autoloc.domain.Reservation;
 import tn.esprit.autoloc.autoloc.service.IReservationService;
+import tn.esprit.autoloc.autoloc.web.dto.ReservationResponseDTO;
+import tn.esprit.autoloc.autoloc.web.dto.ReservationWithContratRequestDTO;
 
 import java.util.List;
 
@@ -45,4 +47,22 @@ public class ReservationController {
     public void removeReservation(@PathVariable("id") Long id) {
         reservationService.removeReservation(id);
     }
+
+    @PostMapping("/affecter-client/{idReservation}")
+    public ReservationResponseDTO affecterReservationAClient(
+            @PathVariable Long idReservation,
+            @RequestParam String nom,
+            @RequestParam String prenom) {
+
+        return reservationService.affecterReservationAClient(
+                idReservation, nom, prenom);
+    }
+
+    @PostMapping("/creer-avec-contrat")
+    public ReservationResponseDTO creerReservationEtContratAssocie(
+            @RequestBody ReservationWithContratRequestDTO requestDTO) {
+
+        return reservationService.creerReservationEtContratAssocie(requestDTO);
+    }
+
 }

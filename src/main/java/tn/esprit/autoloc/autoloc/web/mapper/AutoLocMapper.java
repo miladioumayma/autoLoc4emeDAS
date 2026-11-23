@@ -221,5 +221,29 @@ public class AutoLocMapper {
         if (d.getEquipementIds() != null) e.setEquipements(equipementRepository.findAllById(d.getEquipementIds()));
         return e;
     }
+    public ReservationResponseDTO toResponseDTO(Reservation e) {
+        if (e == null) return null;
+
+        ReservationResponseDTO d = new ReservationResponseDTO();
+
+        d.setIdReservation(e.getIdReservation());
+        d.setDateDebut(e.getDateDebut());
+        d.setDateFin(e.getDateFin());
+        d.setStatut(e.getStatut());
+
+        d.setVehiculeId(
+                e.getVehicule() == null ? null :
+                        e.getVehicule().getIdVehicule()
+        );
+
+        d.setClientId(
+                e.getClient() == null ? null :
+                        e.getClient().getIdClient()
+        );
+
+        d.setContrat(toDTO(e.getContrat()));
+
+        return d;
+    }
 
 }

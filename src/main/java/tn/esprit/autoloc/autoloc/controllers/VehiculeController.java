@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.autoloc.domain.Vehicule;
 import tn.esprit.autoloc.autoloc.service.IVehiculeService;
+import tn.esprit.autoloc.autoloc.web.dto.VehiculeDTO;
 
 import java.util.List;
 
@@ -44,4 +45,23 @@ public class VehiculeController {
     public void removeVehicule(@PathVariable("id") Long id) {
         vehiculeService.removeVehicule(id);
     }
+
+    @PutMapping("/{idVehicule}/equipement/{idEquipement}")
+    public VehiculeDTO affecterVehiculeAEquipement(
+            @PathVariable Long idVehicule,
+            @PathVariable Long idEquipement) {
+
+        return vehiculeService.affecterVehiculeAEquipement(
+                idVehicule, idEquipement);
+    }
+
+    @PostMapping("/maintenance")
+    public VehiculeDTO affecterMaintenanceAvehicule(
+            @RequestParam String description,
+            @RequestParam String immatriculation) {
+
+        return vehiculeService.affecterMaintenanceAvehicule(
+                description, immatriculation);
+    }
+
 }

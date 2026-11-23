@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.autoloc.autoloc.domain.Contrat;
 import tn.esprit.autoloc.autoloc.service.IContratService;
+import tn.esprit.autoloc.autoloc.web.dto.ContratDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,4 +46,15 @@ public class ContratController {
     public void removeContrat(@PathVariable("id") Long id) {
         contratService.removeContrat(id);
     }
+
+    @PostMapping("/affecter-reservation")
+    public ContratDTO affecterContratAReservation(
+            @RequestParam LocalDate dateSignature,
+            @RequestParam LocalDate dateDebut,
+            @RequestParam LocalDate dateFin) {
+
+        return contratService.affecterContratAReservation(
+                dateSignature, dateDebut, dateFin);
+    }
+
 }

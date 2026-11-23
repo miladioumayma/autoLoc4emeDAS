@@ -29,5 +29,7 @@ public class AgenceController {
     public Agence updateAgence(@RequestBody Agence a) { return agenceService.updateAgence(a); }
 
     @DeleteMapping("/{id}")
-    public void removeAgence(@RequestParam Long id) { agenceService.removeAgence(id); }
+    public void removeAgence(@PathVariable Long id) {
+        agenceService.removeAgence(id);
+    }
 }
