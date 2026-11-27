@@ -16,4 +16,8 @@ public interface IReservationRepository extends JpaRepository<Reservation,Long> 
             LocalDate dateDebut,
             StatutReservation statut
     );
+    List<Reservation> findByDateFinLessThanEqualAndStatut(
+            LocalDate dateFin,
+            StatutReservation statut
+    );
 }
